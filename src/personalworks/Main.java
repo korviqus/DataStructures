@@ -18,5 +18,6 @@ public class Main {
         list2.delete("Helium", (Math.pow(10,32)));
         list2.printList();
         list2.delete("EEE",333);
+        list1.printList();
     }
 }
