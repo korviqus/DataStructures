@@ -8,7 +8,7 @@ public class LinkedList {
         this.head = null;
     }
     //Method to append an element to the end of the list
-    public void append(String gasName, int collisions){
+    public void append(String gasName, double collisions){
         Node newNode = new Node(gasName, collisions);
         //Make a head if the list is empty
         if(this.head == null){
@@ -18,17 +18,17 @@ public class LinkedList {
         //If a head already exists
         }else{
             //Temporary node
-            Node current = this.head;
+            Node currNode = this.head;
             //Keeps iterating through nodes until we reach the tail
-            while(current.next != null){
-                current = current.next;
+            while(currNode.next != null){
+                currNode = currNode.next;
             }
-            current.next = newNode;
+            currNode.next = newNode;
             this.size++;
         }
     }
     //Method to add an element to start of the list
-    public void prepend(String gasName, int collisions){
+    public void prepend(String gasName, double collisions){
         Node newNode = new Node(gasName, collisions);
         //New node points to original head
         newNode.next = this.head;
@@ -37,8 +37,8 @@ public class LinkedList {
         this.size++;
     }
     //Method to delete the node with given data
-    public void delete(String gasName, int collision){
-        //Handle the case where the list is empty
+    public void delete(String gasName, double collision){
+        //Handles the case where the list is empty
         if(this.head == null){
             System.out.println("The list is empty!");
             return;
@@ -51,23 +51,39 @@ public class LinkedList {
             this.size--;
             return;
         }
-        Node current = this.head;
-        while(current.next != null) {
-            if(current.next.gasName.equalsIgnoreCase(gasName) && current.next.collisions == collision){
-                current.next = current.next.next;
+        Node currNode = this.head;
+        while(currNode.next != null) {
+            if(currNode.next.gasName.equalsIgnoreCase(gasName) && currNode.next.collisions == collision){
+                currNode.next = currNode.next.next;
                 size--;
                 return;
             }
-            current = current.next;
+            currNode = currNode.next;
         }
+        System.out.println("Item not in list.");
     }
     //A method to print the elements of the list
     public void printList(){
-        Node current = this.head;
-        while(current != null){
-            System.out.printf("Name: %s\nCollisions: %d\n", current.gasName, current.collisions);
-            System.out.print("------------\n");
-            current = current.next;
+        if(this.head == null){
+            System.out.println("The list is empty!");
+            return;
         }
+        Node currNode = this.head;
+        while(currNode != null){
+            System.out.print("------------\n");
+            System.out.printf("Name: %s\nCollisions per L/s at 1 atm: %e\n", currNode.gasName, currNode.collisions);
+            currNode = currNode.next;
+        }
+        System.out.println("---End of list---\n");
+    }
+
+    public LinkedList deepCopy(){
+        LinkedList deepCopy = new LinkedList();
+        Node currNode = this.head;
+        while(currNode != null){
+            deepCopy.append(currNode.gasName, currNode.collisions);
+            currNode = currNode.next;
+        }
+        return deepCopy;
     }
 }
