@@ -11,7 +11,7 @@ public class DoublyLinkedList {
         this.current = null;
     }
 
-    //Optimise this and remove temporary node
+
     public void addSong(String name){
         Song newSong = new Song(name);
         if(this.head == null){
