@@ -19,18 +19,25 @@ public class DoublyLinkedList {
             this.head = this.tail;
             this.current = this.tail;
         }else {
-            Song temp = this.tail;
+            this.tail.next = newSong;
+            newSong.previous = this.tail;
             this.tail = newSong;
-            temp.next = tail;
-            this.tail.previous = temp;
         }
     }
 
     public void previous(){
-
+        if(this.current.previous == null){
+            throw new IndexOutOfBoundsException("There is no previous song!");
+        }else {
+            this.current = this.current.previous;
+        }
     }
 
     public void next(){
-
+        if(this.current.next == null){
+            throw new IndexOutOfBoundsException("There are no more songs left in the playlist!");
+        }else {
+            this.current = this.current.next;
+        }
     }
 }
