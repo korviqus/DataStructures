@@ -46,6 +46,9 @@ public class Stack {
     }
 
     public void deleteMiddle(){
+        //Check if size is 0
+        //check if middle.prev and next are null
+        //return its value
         middle.next.prev = middle.prev;
         middle.prev.next = middle.next;
         size--;
