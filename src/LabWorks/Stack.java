@@ -31,7 +31,10 @@ public class Stack {
         }
     }
 
-    public void pop(){
+    public int pop(){
+       //pop returns the popped value
+       //check if head is null after popping
+       //check if middle.next is null before moving
         if(head != null){
             head = head.next;
             head.prev = null;
@@ -42,4 +45,14 @@ public class Stack {
         }
     }
 
+    public void deleteMiddle(){
+        middle.next.prev = middle.prev;
+        middle.prev.next = middle.next;
+        size--;
+        if(size % 2 == 0){
+            middle = middle.next;
+        }else{
+            middle = middle.prev;
+        }
+    }
 }
