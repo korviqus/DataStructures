@@ -31,4 +31,15 @@ public class Stack {
         }
     }
 
+    public void pop(){
+        if(head != null){
+            head = head.next;
+            head.prev = null;
+            size--;
+            if(size % 2 == 0){
+                middle = middle.next;
+            }
+        }
+    }
+
 }
