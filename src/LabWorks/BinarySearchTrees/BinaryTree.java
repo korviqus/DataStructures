@@ -56,71 +56,67 @@ public class BinaryTree {
     }
 
     // ---------- REMOVE NODE (ITERATIVE) ----------
-    public void removeNode(int data) {
-        Node current = root;
-        Node parent  = null;
 
-        // 1) Find node and its parent
-        while (current != null && current.data != data) {
-            parent = current;
-            if (data < current.data) {
-                current = current.left;
+        public void removeNode(int data) {
+            Node current = root;
+            Node parent = null;
+
+            // 1) Find node and its parent
+            while (current != null && current.data != data) {
+                parent = current;
+                if (data < current.data) {
+                    current = current.left;
+                } else {
+                    current = current.right;
+                }
+            }
+
+            // Not found
+            if (current == null) {
+                return;
+            }
+
+            // Case 1 & 2: node has 0 or 1 child
+            if (current.left == null || current.right == null) {
+                Node child;
+                if (current.left != null) {
+                    child = current.left;
+                } else {
+                    child = current.right;  // could be null if leaf
+                }
+
+                // If deleting the root
+                if (parent == null) {
+                    root = child;
+                } else if (parent.left == current) {
+                    parent.left = child;
+                } else {
+                    parent.right = child;
+                }
             } else {
-                current = current.right;
+                // Case 3: two children
+                // Find inorder successor (smallest in right subtree)
+                Node succParent = current;
+                Node succ = current.right;
+
+                while (succ.left != null) {
+                    succParent = succ;
+                    succ = succ.left;
+                }
+
+                // Copy successor's value into current node
+                current.data = succ.data;
+
+                // Delete successor node (it has at most one right child)
+                Node succChild = succ.right;  // could be null
+
+                if (succParent.left == succ) {
+                    succParent.left = succChild;
+                } else {
+                    succParent.right = succChild;
+                }
             }
         }
-
-        // Not found
-        if (current == null) {
-            return;
-        }
-
-        // Case 1 & 2: node has 0 or 1 child
-        if (current.left == null || current.right == null) {
-            Node child;
-            if (current.left != null) {
-                child = current.left;
-            } else {
-                child = current.right;  // could be null if leaf
-            }
-
-            // If deleting the root
-            if (parent == null) {
-                root = child;
-            } else if (parent.left == current) {
-                parent.left = child;
-            } else {
-                parent.right = child;
-            }
-        } else {
-            // Case 3: two children
-            // Find inorder successor (smallest in right subtree)
-            Node succParent = current;
-            Node succ = current.right;
-
-            while (succ.left != null) {
-                succParent = succ;
-                succ = succ.left;
-            }
-
-            // Copy successor's value into current node
-            current.data = succ.data;
-
-            // Delete successor node (it has at most one right child)
-            Node succChild = succ.right;  // could be null
-
-            if (succParent.left == succ) {
-                succParent.left = succChild;
-            } else {
-                succParent.right = succChild;
-            }
-        }
-    }
-
-    public void printInOrder(){
-        printInOrder(root);
-        System.out.println();
-    }
     private void printInOrder(Node current){
         if (current == null){
             return;
@@ -133,4 +129,17 @@ public class BinaryTree {
         printInOrder(current.right);
     }
 
+    public int countLeaves(){
+        return countLeaves(this.root);
+    }
+
+    private int countLeaves(Node current){
+        if(current == null){
+            return 0;
+        }
+        if(current.left == null && current.right == null){
+            return 1;
+        }
+        return countLeaves(current.left) + countLeaves(current.right);
+    }
 }
