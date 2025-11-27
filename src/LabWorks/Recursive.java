@@ -12,8 +12,15 @@ public class Recursive {
             }
         }
     }
-    public static void main(String[] args){
+
+    public static void main(String[] args) {
         int[] myArray = {1, 2, 3, 4, 5, 6};
-        System.out.println(ArrEvenCount(myArray,0));
+        System.out.println(ArrEvenCount(myArray, 0));
+
+        BinarySearchTree newTree = new BinarySearchTree();
+        int[] data = {1, 2, 3, 4, 5};
+        for (int i = 0; i < 5; i++) {
+            newTree.insert(data[i]);
         }
     }
+}
