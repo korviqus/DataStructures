@@ -14,6 +14,6 @@ public class StudentVerifier {
     }
 
     public static int modPow(int base, int exponent, int mod){
-
+        return -1;
     }
 }

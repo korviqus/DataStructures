@@ -1,4 +1,4 @@
-package LabWorks.hashtabletest;
+/*package LabWorks.hashtabletest;
 
 public class IntHashTable {
 
@@ -56,7 +56,7 @@ public class IntHashTable {
     /*
      Utility method: print the full content of the hash table.
      This is useful to show how separate chaining works.
-     */
+
     public void printTable() {
         System.out.println("=== Hash Table Nodes ===");
         for (int i = 0; i < table.length; i++) {
@@ -81,7 +81,7 @@ public class IntHashTable {
     /*
      Exercise :
      Compute the average grade of all students stored in the hash table.
-    */
+
     public double getAverageGrade() {
 
 
@@ -93,3 +93,4 @@ public class IntHashTable {
     }
 
 }
+*/

@@ -15,7 +15,7 @@ public class Main {
         }
 
         System.out.println();
-        tree.printInOrder();
+       // tree.printInOrder();
 
         // Search test
         System.out.println("\nSearch tests:");
